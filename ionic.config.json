@@ -1,0 +1,7 @@
+{
+  "name": "BetsSoccer_MiguelAngelFernandez",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
