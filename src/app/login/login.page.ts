@@ -1,35 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCard, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Router, RouterModule } from '@angular/router';
+
+import {
+  IonContent,
+  IonCard,
+  IonIcon,
+  IonButton,
+  IonInput,
+  IonItem
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonIcon, IonItem, IonButton, IonInput]
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,   // 👈 IMPORTANTE para routerLink
+    IonContent,
+    IonCard,
+    IonIcon,
+    IonButton,
+    IonInput,
+    IonItem
+  ]
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   email: string = '';
   password: string = '';
   showPassword: boolean = false;
 
-  constructor() {}
-
-  ngOnInit() {}
+  constructor(private router: Router) {}
 
   togglePassword() {
     this.showPassword = !this.showPassword;
-    const input = document.getElementById('password') as HTMLInputElement;
-    input.type = this.showPassword ? 'text' : 'password';
   }
 
   login() {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    // Aquí puedes agregar tu lógica de autenticación con un servicio
-  }
+    if (!this.email || !this.password) {
+      alert('Completa todos los campos');
+      return;
+    }
 
+    console.log('Login OK:', this.email);
+
+    // 🔥 Redirige al home
+    this.router.navigateByUrl('/home');
+  }
 }

@@ -1,0 +1,77 @@
+<ion-content fullscreen class="register-content">
+  <!-- Fondo difuminado -->
+  <div class="background-overlay"></div>
+
+  <!-- Contenedor centrado -->
+  <div class="register-center">
+    <ion-card class="glass-panel">
+      <!-- Logo y Header -->
+      <div class="register-header">
+        <div class="logo">
+          <ion-icon name="football-outline"></ion-icon>
+        </div>
+        <h1>FutApp</h1>
+        <p>Únete a la jugada</p>
+      </div>
+
+      <!-- Formulario -->
+      <form (ngSubmit)="register()" class="register-form">
+        <!-- Username -->
+        <ion-item class="input-gradient-border">
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-input type="text" placeholder="Nombre de usuario" [(ngModel)]="username" name="username"></ion-input>
+        </ion-item>
+
+        <!-- Email -->
+        <ion-item class="input-gradient-border">
+          <ion-icon slot="start" name="mail-outline"></ion-icon>
+          <ion-input type="email" placeholder="Correo electrónico" [(ngModel)]="email" name="email"></ion-input>
+        </ion-item>
+
+        <!-- Password -->
+        <ion-item class="input-gradient-border">
+          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          <ion-input [attr.type]="showPassword ? 'text' : 'password'"
+                     placeholder="Contraseña"
+                     [(ngModel)]="password" name="password">
+          </ion-input>
+          <ion-button fill="clear" slot="end" (click)="togglePassword()">
+            <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <!-- Confirm Password -->
+        <ion-item class="input-gradient-border">
+          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          <ion-input [attr.type]="showConfirmPassword ? 'text' : 'password'"
+                     placeholder="Confirmar contraseña"
+                     [(ngModel)]="confirmPassword" name="confirmPassword">
+          </ion-input>
+          <ion-button fill="clear" slot="end" (click)="toggleConfirmPassword()">
+            <ion-icon [name]="showConfirmPassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <!-- Terms Checkbox -->
+        <ion-item lines="none" class="terms-item">
+          <ion-checkbox slot="start" [(ngModel)]="termsAccepted" name="terms"></ion-checkbox>
+          <ion-label>Acepto los <a href="#">Términos y Condiciones</a></ion-label>
+        </ion-item>
+
+        <!-- Submit Button -->
+        <ion-button expand="block" type="submit" class="register-btn">
+          REGISTRARSE
+        </ion-button>
+      </form>
+
+      <!-- Footer -->
+      <div class="register-footer">
+        <p>¿Quieres iniciar sesión? 
+          <span routerLink="/login" class="auth-link">
+  Ingresa aquí
+</span>
+        </p>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
