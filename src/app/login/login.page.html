@@ -1,0 +1,54 @@
+<ion-content fullscreen class="login-content">
+  <div class="background-overlay"></div>
+
+  <!-- Contenedor centrado -->
+  <div class="login-center">
+    <ion-card class="glass-panel">
+      <!-- Logo y Header -->
+      <div class="login-header">
+        <div class="logo">
+          <ion-icon name="football-outline"></ion-icon>
+        </div>
+        <h1 class="blank">Bienvenido de nuevo</h1>
+        <p class="bank">------</p>
+      </div>
+
+      <!-- Formulario -->
+      <form (ngSubmit)="login()" class="login-form">
+        <ion-item class="input-gradient-border">
+          <ion-icon slot="start" name="mail-outline"></ion-icon>
+          <ion-input type="email" placeholder="usuario@ejemplo.com"
+                     [(ngModel)]="email" name="email">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="input-gradient-border">
+          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          <ion-input [attr.type]="showPassword ? 'text' : 'password'"
+                     placeholder="••••••••"
+                     [(ngModel)]="password"
+                     name="password">
+          </ion-input>
+          <ion-button fill="clear" slot="end" (click)="togglePassword()">
+            <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <div class="forgot-password">
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <ion-button expand="block" type="submit" class="login-btn">
+          INICIAR SESIÓN
+          <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+        </ion-button>
+      </form>
+
+      <div class="login-footer">
+        <p>¿No tienes cuenta?
+          <a href="#">Regístrate</a>
+        </p>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

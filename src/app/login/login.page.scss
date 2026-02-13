@@ -1,0 +1,141 @@
+/* ===== ion-content y fondo ===== */
+.login-content {
+  --background: none;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blank{
+
+color: #cbd5e1;
+
+}
+
+/* ===== Fondo con blur ===== */
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9wJHQF7aTn3828H-UXXVkXxWuOv5uVUv8VmoA0fVhMWnjIm64Tw9EbK1dzeohTkAMGGmhR2GmzQuKuMm-IxQlFT-jkvCTIiA9_Pcc_cVdG1mdgPwYQwFk6epVwOkH368xTgmEglhC50MxrXU_t9pMp592Cbec27EDELFLkvuXimECA7O6yRNLCalWntFOgarrycEqE5LJRssV9cqwTWk5VAx1xP57JzmnXXlnu4BT8NDQhZgE5lyeoKjJu_BmqWeYMVO5TiOqJRX3') center/cover no-repeat;
+  filter: blur(8px) brightness(0.5);
+  z-index: 0;
+}
+
+/* ===== Contenedor centrado absoluto ===== */
+.login-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== Glassmorphism Card ===== */
+.glass-panel {
+  background: rgba(34, 16, 16, 0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 2rem;
+  border: 1px solid rgba(242, 13, 13, 0.15);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 25px 60px -15px rgba(0,0,0,0.5);
+  align-items: center;
+}
+
+/* ===== Header ===== */
+.login-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login-header .logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f20d0d, #ff4c4c);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #cbd5e1;
+  box-shadow: 0 8px 20px rgba(242,13,13,0.4);
+}
+
+/* ===== Inputs ===== */
+.input-gradient-border {
+  --border-radius: 9999px;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1px solid rgba(242,13,13,0.25);
+  background: rgba(34,16,16,0.4);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.input-gradient-border:focus-within {
+  border-color: #f20d0d;
+  box-shadow: 0 0 12px rgba(242,13,13,0.4);
+}
+
+/* ===== Forgot password ===== */
+.forgot-password {
+  text-align: right;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.forgot-password a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  color: #f20d0d;
+}
+
+/* ===== Botón de login ===== */
+.login-btn {
+  border-radius: 9999px;
+  font-weight: 600;
+  background: #f20d0d;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(242,13,13,0.5);
+}
+
+/* ===== Footer ===== */
+.login-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.login-footer a {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.login-footer a:hover {
+  color: #f20d0d;
+}
