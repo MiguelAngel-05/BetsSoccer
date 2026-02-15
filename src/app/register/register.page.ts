@@ -13,6 +13,7 @@ import {
   IonItem,
   IonLabel
 } from '@ionic/angular/standalone';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -44,7 +45,7 @@ export class RegisterPage {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   togglePassword() {
     this.showPassword = !this.showPassword;
@@ -55,6 +56,7 @@ export class RegisterPage {
   }
 
   register() {
+
     if (!this.username || !this.email || !this.password || !this.confirmPassword) {
       alert('Completa todos los campos');
       return;
@@ -70,9 +72,17 @@ export class RegisterPage {
       return;
     }
 
-    console.log('Usuario registrado:', this.username);
+    this.authService.register(this.username, this.email, this.password).subscribe({
+      next: (res) => {
+        console.log('Registro correcto', res);
+        this.router.navigateByUrl('/home'); // ya entra logueado
+      },
+      error: (err) => {
+        console.error(err);
+        alert(err.error?.error || 'Error al registrarse');
+      }
+  });
 
-    // 🔥 Redirige al login
-    this.router.navigateByUrl('/login');
+  
   }
 }

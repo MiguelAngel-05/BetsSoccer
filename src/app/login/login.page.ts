@@ -11,6 +11,7 @@ import {
   IonInput,
   IonItem
 } from '@ionic/angular/standalone';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -35,21 +36,31 @@ export class LoginPage {
   password: string = '';
   showPassword: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
   login() {
-    if (!this.email || !this.password) {
-      alert('Completa todos los campos');
-      return;
-    }
-
-    console.log('Login OK:', this.email);
-
-    // 🔥 Redirige al home
-    this.router.navigateByUrl('/home');
+  if (!this.email || !this.password) {
+    alert('Completa todos los campos');
+    return;
   }
+
+  this.authService.login(this.email, this.password).subscribe({
+    next: (res) => {
+      console.log('Login correcto', res);
+      this.router.navigateByUrl('/home');
+    },
+    error: (err) => {
+      console.error(err);
+      alert(err.error?.error || 'Error al iniciar sesión');
+    }
+  });
+
+
+  
+}
+
 }

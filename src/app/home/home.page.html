@@ -1,20 +1,98 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h2>FutApp</h2>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-avatar>
+      <img src="https://i.pravatar.cc/40" />
+    </ion-avatar>
   </div>
+
+  <!-- SEARCH -->
+  <ion-searchbar
+    class="searchbar"
+    [(ngModel)]="search"
+    (ionInput)="applyFilters()"
+    placeholder="Buscar equipo o partido">
+  </ion-searchbar>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <div class="chip"
+      [class.active]="filter === 'all'"
+      (click)="setFilter('all')">
+      Todos
+    </div>
+
+    <div class="chip"
+      [class.active]="filter === 'live'"
+      (click)="setFilter('live')">
+      🔴 En vivo
+    </div>
+
+    <div class="chip"
+      [class.active]="filter === 'pending'"
+      (click)="setFilter('pending')">
+      ⏳ Próximos
+    </div>
+
+    <div class="chip"
+      [class.active]="filter === 'finished'"
+      (click)="setFilter('finished')">
+      ✅ Finalizados
+    </div>
+  </div>
+
+  <!-- MATCHES -->
+  <div class="matches">
+
+    <ion-card *ngFor="let m of filteredMatches" class="match-card">
+
+      <ion-card-header>
+        <div class="match-top">
+          <span class="league">
+            Jornada {{ m.jornada }}
+          </span>
+
+          <span
+            class="status"
+            [class.live]="m.status === 'live'">
+            {{ m.status | uppercase }}
+          </span>
+        </div>
+
+        <ion-card-title class="teams">
+          <span>{{ m.home }}</span>
+          <span class="vs">  VS  </span>
+          <span>{{ m.away }}</span>
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <!-- SCORE -->
+        <div class="score" *ngIf="m.status !== 'pending'">
+          <span>{{ m.homeScore }}</span>
+          <span class="colon">:</span>
+          <span>{{ m.awayScore }}</span>
+        </div>
+
+        <!-- ACTION -->
+        <ion-button
+          *ngIf="m.status === 'pending'"
+          expand="block"
+          color="danger"
+          (click)="bet(m)">
+          Apostar ahora
+        </ion-button>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
 </ion-content>
