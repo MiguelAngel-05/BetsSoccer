@@ -3,7 +3,6 @@ ion-content {
   color: #fff;
 }
 
-/* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
@@ -20,7 +19,6 @@ ion-avatar img {
   border: 2px solid #e50914;
 }
 
-/* SEARCH */
 .searchbar {
   margin: 0 16px 14px;
   --background: #1b0c0d;
@@ -30,7 +28,6 @@ ion-avatar img {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
 }
 
-/* FILTERS */
 .filters {
   display: flex;
   gap: 10px;
@@ -55,12 +52,10 @@ ion-avatar img {
   transform: scale(1.05);
 }
 
-/* MATCHES */
 .matches {
   padding: 0 16px 28px;
 }
 
-/* MATCH CARD */
 .match-card {
   background: linear-gradient(180deg, #1b0c0d, #140607);
   border-radius: 22px;
@@ -75,7 +70,6 @@ ion-avatar img {
   }
 }
 
-/* CARD HEADER */
 ion-card-header {
   padding-bottom: 6px;
 }
@@ -92,7 +86,6 @@ ion-card-title {
   font-weight: 700;
 }
 
-/* SCORE */
 .score {
   text-align: center;
   font-size: 34px;
@@ -102,7 +95,6 @@ ion-card-title {
   letter-spacing: 2px;
 }
 
-/* BUTTON */
 ion-button {
   --border-radius: 14px;
   height: 48px;

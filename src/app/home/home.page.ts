@@ -25,7 +25,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   constructor(
     private api: ApiService,
-    private auth: AuthService,
+    public auth: AuthService,
     private toast: ToastController,
     private alertCtrl: AlertController,
     private router: Router
@@ -42,7 +42,7 @@ export class HomePage implements OnInit, OnDestroy {
     this.refreshSub?.unsubscribe();
   }
 
-  /** Carga todos los partidos */
+  // cargo partidos
   loadMatches() {
     this.api.getMatches().subscribe({
       next: res => { this.matches = res; this.applyFilters(); },
@@ -50,7 +50,7 @@ export class HomePage implements OnInit, OnDestroy {
     });
   }
 
-  /** Carga apuestas del usuario logueado */
+  // cargo apuestas
   loadUserBets() {
     if (!this.auth.isLogged() || !this.auth.user) return;
     this.api.getUserBets(this.auth.user.id).subscribe({
@@ -59,7 +59,6 @@ export class HomePage implements OnInit, OnDestroy {
     });
   }
 
-  /** Carga notificaciones pendientes del usuario */
   loadUserNotifications() {
     if (!this.auth.isLogged() || !this.auth.user) return;
     this.api.getNotifications(this.auth.user.id).subscribe(notifs => {
@@ -70,7 +69,7 @@ export class HomePage implements OnInit, OnDestroy {
     });
   }
 
-  /** Filtra partidos según búsqueda y tipo */
+  // pa la busqueda
   applyFilters() {
     const term = this.search.toLowerCase().trim();
     this.filteredMatches = this.matches
@@ -83,7 +82,7 @@ export class HomePage implements OnInit, OnDestroy {
     this.applyFilters();
   }
 
-  /** Navega a detalle solo si el partido terminó */
+  // solo voy a detalle si el partido esta acabado
   goToMatchDetail(match: any) {
     if (match.status !== 'finished') {
       this.showToast('Este partido aún no ha terminado');
@@ -92,18 +91,17 @@ export class HomePage implements OnInit, OnDestroy {
     this.router.navigate(['/match-detail', match.id]);
   }
 
-  /** Toast */
   async showToast(msg: string) {
     const t = await this.toast.create({ message: msg, duration: 2000, position: 'bottom' });
     t.present();
   }
 
-  /** Devuelve la apuesta del usuario si existe */
+  // devuelve la apuesta del usuario si existe
   hasBet(matchId: number) {
     return this.userBets.find(b => b.matchId === matchId);
   }
 
-  /** Apostar en un partido pendiente */
+  // apostar en un partido solo si estapendiente
   async bet(match: any) {
     if (!this.auth.isLogged() || !this.auth.user) return this.showToast('Debes iniciar sesión');
 
@@ -138,7 +136,7 @@ export class HomePage implements OnInit, OnDestroy {
     await alert.present();
   }
 
-  /** Actualiza partidos en vivo y detecta finalizados */
+  // actualiza partidos en vivo y detecta finalizados
   private updateLiveMatches() {
     const liveOrPendingIds = this.matches
       .filter(m => m.status === 'live' || m.status === 'pending')
@@ -160,7 +158,6 @@ export class HomePage implements OnInit, OnDestroy {
           }
           this.applyFilters();
 
-          // Detectar partido terminado
           if (res.minute >= 90 && res.status !== 'finished') {
             res.status = 'finished';
             this.processFinishedMatch(res);
@@ -172,11 +169,10 @@ export class HomePage implements OnInit, OnDestroy {
     });
   }
 
-  /** Procesa un partido finalizado: reparto de puntos y actualización de equipos */
   private processFinishedMatch(match: any) {
     if (match.status !== 'finished') return;
 
-    // 1️⃣ Reparto de puntos según apuestas
+    // reparto puntaje
     this.api.getBetsByMatch(match.id).subscribe(bets => {
       bets.forEach((bet: any) => {
         let points = 0;
@@ -201,8 +197,22 @@ export class HomePage implements OnInit, OnDestroy {
       });
     });
 
-    // 2️⃣ Actualizar estadísticas de equipos
+    // actualizo estats de equipos
     this.api.updateTeamStats(match.home, match.away, match.homeScore, match.awayScore).subscribe();
   }
+
+goToProfile() {
+  if (!this.auth.isLogged() || !this.auth.user) {
+    this.showToast('Debes iniciar sesión');
+    return;
+  }
+  this.router.navigate(['/profile', this.auth.user.id]);
+}
+
+logout() {
+  this.auth.logout(); // esto es pa limpiar la sesion           
+  this.router.navigateByUrl('/login'); 
+}
+
 
 }

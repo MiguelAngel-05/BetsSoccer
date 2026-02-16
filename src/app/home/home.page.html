@@ -1,22 +1,35 @@
 <ion-content>
 
-  <!-- HEADER -->
+  <!-- head -->
   <ion-header class="head">
-  <ion-toolbar style="--background: linear-gradient(145deg, #1b0c0d, #140607);flex-direction: column; padding: 6px 12px;">
-    
-    <!-- Título + Avatar -->
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <ion-title style="font-weight: 800; letter-spacing: 0.5px; color: #fff;">FeisFut</ion-title>
-      <ion-avatar>
-        <img src="https://i.pravatar.cc/40" />
-      </ion-avatar>
-    </div>
+  <ion-toolbar style="--background: linear-gradient(145deg, #1b0c0d, #140607); padding: 6px 12px;">
 
-    <!-- Menu horizontal -->
-    <div style="display: flex; gap: 12px; margin-top: 6px; overflow-x: auto; width: 100%;">
-      <ion-button routerLink="/ranking" fill="clear" class="nav-btn">Ranking</ion-button>
-      <ion-button routerLink="/team-template" fill="clear" class="nav-btn">Plantilla</ion-button>
-      <ion-button routerLink="/league" fill="clear" class="nav-btn">Liga</ion-button>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+
+      <!-- titulo -->
+      <ion-title style="font-weight: 800; letter-spacing: 0.5px; color: #fff;">
+        FeisFut
+      </ion-title>
+
+      <!-- botones nav -->
+      <div style="display: flex; gap: 12px;">
+        <ion-button routerLink="/ranking" fill="clear" class="nav-btn">Ranking</ion-button>
+        <ion-button routerLink="/liga" fill="clear" class="nav-btn">Liga</ion-button>
+        <ion-button routerLink="/chat" fill="clear" class="nav-btn">Chat</ion-button>
+      </div>
+
+      <!-- avatar y botones -->
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <ion-avatar (click)="goToProfile()">
+          <img [src]="auth.user?.avatar || 'https://i.pravatar.cc/40'" />
+        </ion-avatar>
+
+        <!-- cerrar sesion -->
+        <ion-button fill="outline" color="danger" (click)="logout()">
+          Salir
+        </ion-button>
+      </div>
+
     </div>
 
   </ion-toolbar>

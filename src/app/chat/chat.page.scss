@@ -1,0 +1,46 @@
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+
+    .message {
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background-color: rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+
+      .username {
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+
+      .text {
+        word-wrap: break-word;
+      }
+
+      .time {
+        font-size: 0.7em;
+        color: gray;
+        align-self: flex-end;
+      }
+    }
+  }
+
+  .input-box {
+    display: flex;
+    padding: 8px;
+    gap: 8px;
+    border-top: 1px solid #ccc;
+
+    ion-input {
+      flex: 1;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar class="head" style="--background: linear-gradient(145deg, #1b0c0d, #140607); padding: 6px 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <span style="font-size: 1.2rem; color: #fff;">Perfil</span>
+      <ion-button routerLink="/home" fill="clear" class="head">VOLVER</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-section">
+    <ion-avatar>
+      <img [src]="newAvatar || user.avatar" />
+    </ion-avatar>
+    <ion-button (click)="generateDiceBear()">Generar DiceBear</ion-button>
+    <ion-button color="success" (click)="updateAvatar()">Guardar Avatar</ion-button>
+  </div>
+
+  <div class="stats-section">
+    <h2>Estadísticas</h2>
+    <p>Total apuestas: {{ totalBets }}</p>
+    <p>Apuestas ganadas: {{ betsWon }}</p>
+    <p>Puntos totales ganados: {{ totalPoints }}</p>
+  </div>
+
+  <div class="bets-section">
+    <h2>Historial de Apuestas</h2>
+    <ion-list>
+      <ion-item *ngFor="let b of bets">
+        <ion-label>
+          Jornada {{ b.match?.jornada }}: {{ b.match?.home }} {{ b.homeScore }} - {{ b.awayScore }} {{ b.match?.away }}
+          <p>⚡ Puntos ganados: {{ b.pointsEarned || 0 }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

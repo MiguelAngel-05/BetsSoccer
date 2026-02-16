@@ -1,19 +1,19 @@
 <ion-content *ngIf="match">
 
-  <!-- HEADER -->
+  <!-- head -->
   <div class="detail-header">
     <h2>{{ match.home }} vs {{ match.away }}</h2>
     <span class="status">{{ match.status | uppercase }}</span>
   </div>
 
-  <!-- SCORE -->
+  <!-- resultado -->
   <div class="score" *ngIf="match.status !== 'pending'">
     <span>{{ match.homeScore }}</span>
     <span>:</span>
     <span>{{ match.awayScore }}</span>
   </div>
 
-  <!-- EVENTS -->
+  <!-- eventos -->
   <div class="events" *ngIf="events.length">
     <h3>Eventos</h3>
 
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <!-- BET FORM -->
+  <!-- fromulario -->
   <div class="bet-form" *ngIf="match.status === 'pending'">
 
     <h3>Realizar apuesta</h3>

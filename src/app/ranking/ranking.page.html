@@ -9,17 +9,17 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-  <!-- Search Bar -->
+  <!-- barra busqueda -->
   <ion-searchbar [(ngModel)]="search" placeholder="Buscar usuario..." show-clear-button="focus" class="searchbar"></ion-searchbar>
 
-  <!-- Filter Segment -->
+  <!-- filtro -->
   <div class="filters">
     <div class="chip" [class.active]="filter==='weekly'" (click)="setFilter('weekly')">Semanal</div>
     <div class="chip" [class.active]="filter==='monthly'" (click)="setFilter('monthly')">Mensual</div>
     <div class="chip" [class.active]="filter==='all'" (click)="setFilter('all')">Total</div>
   </div>
 
-  <!-- Top User Card -->
+  <!-- top user -->
   <ion-card *ngIf="topUser" class="match-card">
   <ion-card-header class="top-header">
     <ion-card-subtitle>Champion</ion-card-subtitle>
@@ -37,7 +37,7 @@
   </ion-card-content>
 </ion-card>
 
-  <!-- Ranking List -->
+  <!-- lista -->
   <ion-list>
     <ion-item *ngFor="let user of filteredUsers(); let i = index" lines="full" class="match-card" [ngClass]="getGlow(i)">
       <ion-avatar slot="start">

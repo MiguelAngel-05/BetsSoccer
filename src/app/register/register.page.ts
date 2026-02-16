@@ -23,7 +23,7 @@ import { AuthService } from '../service/auth.service';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,  // 👈 necesario para routerLink
+    RouterModule,
     IonContent,
     IonCard,
     IonIcon,
@@ -55,34 +55,34 @@ export class RegisterPage {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  register() {
-
-    if (!this.username || !this.email || !this.password || !this.confirmPassword) {
-      alert('Completa todos los campos');
-      return;
-    }
-
-    if (!this.termsAccepted) {
-      alert('Debes aceptar los términos');
-      return;
-    }
-
-    if (this.password !== this.confirmPassword) {
-      alert('Las contraseñas no coinciden');
-      return;
-    }
-
-    this.authService.register(this.username, this.email, this.password).subscribe({
-      next: (res) => {
-        console.log('Registro correcto', res);
-        this.router.navigateByUrl('/home'); // ya entra logueado
-      },
-      error: (err) => {
-        console.error(err);
-        alert(err.error?.error || 'Error al registrarse');
-      }
-  });
-
   
+register() {
+  if (!this.username || !this.email || !this.password || !this.confirmPassword) {
+    alert('Completa todos los campos');
+    return;
   }
+
+  if (!this.termsAccepted) {
+    alert('Debes aceptar los términos');
+    return;
+  }
+
+  if (this.password !== this.confirmPassword) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+
+  this.authService.register(this.username, this.email, this.password).subscribe({
+    next: (res) => {
+      console.log('Registro correcto', res);
+      this.router.navigateByUrl('/home'); // ya logueado
+    },
+    error: (err) => {
+      console.error(err);
+      alert(err.error?.error || 'Error al registrarse');
+    }
+  });
+}
+  
+  
 }

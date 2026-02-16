@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar class="head" style="--background: linear-gradient(145deg, #1b0c0d, #140607); padding: 6px 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <span style="font-size: 1.2rem; color: #fff;">{{teamName}}</span>
+      <ion-button routerLink="/liga" fill="clear" class="head">VOLVER</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="page">
+
+    <!-- cadrs -->
+    <div class="team-stats" *ngIf="teamStats">
+
+      <h2>Estadísticas: </h2>
+
+      <div class="stats-grid">
+        <div>
+          <span>Posición: &nbsp;&nbsp;</span>
+          <strong>#{{ position }}</strong>
+        </div>
+        <div>
+          <span>Puntos: &nbsp;&nbsp;</span>
+          <strong>{{ teamStats.pts }}</strong>
+        </div>
+        <div>
+          <span>Goles: &nbsp;&nbsp;</span>
+          <strong>{{ teamStats.gf }}</strong>
+        </div>
+        <div>
+          <span>Encajados: &nbsp;&nbsp;</span>
+          <strong>{{ teamStats.gc }}</strong>
+        </div>
+        <div>
+          <span>Diferencia: &nbsp;&nbsp;</span>
+          <strong>{{ teamStats.gf - teamStats.gc }}</strong>
+        </div>
+        <div>
+          <span>Promedio: &nbsp;&nbsp;</span>
+          <strong>{{ goalsPerMatch }}</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- el top -->
+    <div class="top-scorer" *ngIf="topScorer">
+      <h2>Máximo Goleador: </h2>
+      <div class="scorer-card">
+        <ion-avatar>
+          <img src="https://i.pravatar.cc/150?u={{topScorer.id}}">
+        </ion-avatar>
+        <div>
+          <h3>{{ topScorer.name }}</h3>
+          <p>{{ topScorer.goals }} goles</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- lsita de users -->
+    <div class="players-list">
+
+      <h2>Plantilla: </h2>
+
+      <div class="player-card"
+           *ngFor="let player of players">
+
+        <ion-avatar>
+          <img src="https://i.pravatar.cc/150?u={{player.id}}">
+        </ion-avatar>
+
+        <div class="player-info">
+          <h3>{{ player.name }}</h3>
+          <p>{{ player.position }}</p>
+
+          <div class="stats">
+            <span>⚽: {{ player.goals }}</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

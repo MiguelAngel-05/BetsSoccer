@@ -21,10 +21,29 @@ export const routes: Routes = [
   {
     path: 'match-detail/:id',
     loadComponent: () => import('./match-detail/match-detail.page').then( m => m.MatchDetailPage)
-  },  {
+  },
+  {
     path: 'ranking',
     loadComponent: () => import('./ranking/ranking.page').then( m => m.RankingPage)
   },
+  {
+    path: 'liga',
+    loadComponent: () => import('./liga/liga.page').then( m => m.LigaPage)
+  },
+  {
+    path: 'plantilla/:teamName',
+    loadComponent: () => import('./plantilla/plantilla.page').then( m => m.PlantillaPage)
+  },
+  {
+    path: 'profile/:id',
+    loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
+  },
+  {
+    path: 'chat',
+    loadComponent: () => import('./chat/chat.page').then( m => m.ChatPage)
+  },
+
+
 
 
 ];

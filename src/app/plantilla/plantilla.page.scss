@@ -1,0 +1,128 @@
+ion-content {
+  --background: linear-gradient(180deg, #0d0506, #140607);
+  color: white;
+}
+
+.toolbar-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.players-list {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #1b0c0d, #140607);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  transition: 0.2s ease;
+}
+
+.player-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(229,9,20,0.4);
+}
+
+.player-card ion-avatar {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #e50914;
+}
+
+.player-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.player-info p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #bbb;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #e50914;
+  font-weight: 600;
+}
+.head {
+  --ion-color-primary: #ffffff;
+}
+
+.page {
+  padding: 16px;
+  color: white;
+}
+
+.team-stats {
+  background: linear-gradient(180deg, #1b0c0d, #140607);
+  padding: 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.stats-grid div {
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.top-scorer {
+  margin-bottom: 24px;
+}
+
+.scorer-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(145deg, #e50914, #b10710);
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.players-list h2 {
+  margin-bottom: 12px;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(180deg, #1b0c0d, #140607);
+  padding: 12px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.player-info h3 {
+  margin: 0;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #bbb;
+}

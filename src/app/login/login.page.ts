@@ -21,7 +21,7 @@ import { AuthService } from '../service/auth.service';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,   // 👈 IMPORTANTE para routerLink
+    RouterModule, 
     IonContent,
     IonCard,
     IonIcon,
@@ -51,16 +51,13 @@ export class LoginPage {
   this.authService.login(this.email, this.password).subscribe({
     next: (res) => {
       console.log('Login correcto', res);
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/home'); // ya logueado
     },
     error: (err) => {
       console.error(err);
       alert(err.error?.error || 'Error al iniciar sesión');
     }
   });
-
-
-  
 }
 
 }

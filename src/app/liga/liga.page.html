@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <div class="toolbar-flex">
+      <!-- titulo -->
+      <ion-title class="toolbar-title">Tabla de Clasificación</ion-title>
+      <ion-button routerLink="/home" fill="clear" class="head">HOME</ion-button>
+
+      <!-- barra de busqueda -->
+      <div class="toolbar-end">
+        <ion-searchbar
+          [(ngModel)]="search"
+          placeholder="Buscar equipo..."
+          class="search">
+        </ion-searchbar>
+
+        <ion-button fill="clear">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page">
+
+    <!-- card de equipos -->
+    <div class="league-card">
+      <div class="league-info">
+        <span class="season">TEMPORADA 23/24</span>
+        <h2>La Liga</h2>
+        <p>Jornada {{ currentRound }} de {{ totalRounds }}</p>
+      </div>
+
+      <div class="stats">
+        <div>
+          <span>PARTIDOS:&nbsp;&nbsp;</span>
+          <strong>{{ totalMatches }}</strong>
+        </div>
+        <div>
+          <span>GOLES:&nbsp;&nbsp;</span>
+          <strong>{{ totalGoals }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- la tabla -->
+    <div class="table">
+
+      <div class="table-header">
+        <span>POS</span>
+        <span class="team">EQUIPO</span>
+        <span>PJ</span>
+        <span>G</span>
+        <span>E</span>
+        <span>P</span>
+        <span>GF</span>
+        <span>GC</span>
+        <span>DG</span>
+        <span class="pts">PTS</span>
+        <span>FORMA</span>
+      </div>
+
+      <div
+        class="row"
+        *ngFor="let team of getFilteredTeams(); let i = index"
+        [ngClass]="getRowClass(i)"
+        (click)="goToTeam(team.name)">
+        <span class="pos">{{ i + 1 }}</span>
+
+        <div class="team">
+          <ion-avatar>
+            <img [src]="getTeamLogo(team.name)" />
+          </ion-avatar>
+          {{ team.name }}
+        </div>
+
+        <!-- las stats -->
+        <span>{{ team.played }}</span>
+        <span>{{ team.win }}</span>
+        <span>{{ team.draw }}</span>
+        <span>{{ team.lose }}</span>
+        <span>{{ team.gf }}</span>
+        <span>{{ team.ga }}</span>
+
+        <span
+          [class.positive]="team.dg > 0"
+          [class.negative]="team.dg < 0">
+          {{ team.dg > 0 ? '+' : '' }}{{ team.dg }}
+        </span>
+
+        <span class="pts">{{ team.points }}</span>
+
+        <div class="form">
+          <span
+            *ngFor="let r of team.form"
+            [class.win]="r === 'W'"
+            [class.draw]="r === 'D'"
+            [class.lose]="r === 'L'">
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

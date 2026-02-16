@@ -1,4 +1,3 @@
-/* ===== ion-content y fondo ===== */
 .register-content {
   --background: none;
   position: relative;
@@ -11,7 +10,6 @@
   align-items: center;
 }
 
-/* ===== Fondo con blur ===== */
 .background-overlay {
   position: absolute;
   inset: 0;
@@ -21,7 +19,6 @@
   z-index: 0;
 }
 
-/* ===== Contenedor centrado absoluto ===== */
 .register-center {
   position: absolute;
   top: 50%;
@@ -36,7 +33,6 @@
   align-items: center;
 }
 
-/* ===== Glass Card ===== */
 .glass-panel {
   background: rgba(34, 16, 16, 0.88);
   backdrop-filter: blur(18px);
@@ -51,7 +47,6 @@
   width: 100%;
 }
 
-/* ===== Header ===== */
 .register-header {
   text-align: center;
   display: flex;
@@ -74,7 +69,6 @@
   box-shadow: 0 10px 25px rgba(242,13,13,0.4);
 }
 
-/* ===== Inputs ===== */
 .input-gradient-border {
   --border-radius: 9999px;
   border-radius: 9999px;
@@ -92,7 +86,6 @@
   background: rgba(34,16,16,0.65);
 }
 
-/* ===== Terms ===== */
 .terms-item {
   --background: transparent;
   --min-height: 50px;
@@ -111,7 +104,6 @@
   text-decoration: underline;
 }
 
-/* ===== Botón principal ===== */
 .register-btn {
   border-radius: 9999px;
   font-weight: 600;
@@ -127,7 +119,6 @@
   box-shadow: 0 12px 28px rgba(242,13,13,0.5);
 }
 
-/* ===== Divider ===== */
 .divider {
   width: 100%;
   text-align: center;
@@ -155,7 +146,6 @@
   z-index: 1;
 }
 
-/* ===== Social Buttons ===== */
 .social-buttons {
   display: flex;
   flex-direction: column;
@@ -178,7 +168,6 @@
   transform: translateY(-1px);
 }
 
-/* ===== Footer ===== */
 .register-footer {
   text-align: center;
   font-size: 0.85rem;

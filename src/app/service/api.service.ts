@@ -23,12 +23,12 @@ export class ApiService {
     });
   }
 
-  // MATCHES
+  // matches
   getMatches(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/matches`);
   }
 
-  // BET
+  // bet
   placeBet(data: {
     userId: number;
     matchId: number;
@@ -42,7 +42,7 @@ export class ApiService {
     );
   }
 
-  // AUTH
+  // auth
   login(email: string, password: string) {
     return this.http.post(`${this.baseUrl}/login`, { email, password });
   }
@@ -59,36 +59,56 @@ getUserBets(userId: number) {
   return this.http.get<any[]>(`${this.baseUrl}/bets/user/${userId}`);
 }
 
- // Obtener notificaciones de usuario
+ // obtener notis de un user
   getNotifications(userId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/notifications/user/${userId}`);
   }
 
-  // Obtener apuestas de un partido
+  // obtener apuestas
   getBetsByMatch(matchId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/bets/match/${matchId}`);
   }
 
-  // Sumar puntos a un usuario
+  // sumar puntos
   addPointsToUser(userId: number, points: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/users/${userId}/add-points`, { points });
   }
 
-  // Crear notificación
+  // crear notificacion
   createNotification(notif: { userId: number, message: string, read?: boolean, createdAt: Date }): Observable<any> {
     return this.http.post(`${this.baseUrl}/notifications`, notif);
   }
 
-  // Actualizar stats de equipos tras partido
+  // actualizar statss
   updateTeamStats(home: string, away: string, homeScore: number, awayScore: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/teams/update-stats`, { home, away, homeScore, awayScore });
   }
 
-  /** Obtener ranking global de usuarios */
+  // rank global
   getRanking(filter: RankingFilter = 'all'): Observable<any[]> {
-    // Si tu endpoint solo devuelve toda la lista, puedes filtrar en frontend
     return this.http.get<any[]>(`${this.baseUrl}/leaderboard`);
   }
 
+  getStandings(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/league/standings`);
+  }
+
+  // actu usuario
+  updateUser(userId: number, data: any) {
+    const token = this.auth.token;
+    return this.http.put(`${this.baseUrl}/users/${userId}`, data, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+  }
+
+  // obtener msg
+getMessages(matchId: number) {
+  return this.http.get<any[]>(`${this.baseUrl}/messages/${matchId}`);
+}
+
+// enviar msg
+sendMessage(payload: { matchId: number, username: string, text: string }) {
+  return this.http.post<any>(`${this.baseUrl}/messages`, payload);
+}
 
 }
