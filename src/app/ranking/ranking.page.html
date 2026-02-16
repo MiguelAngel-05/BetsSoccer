@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar class="head" style="--background: linear-gradient(145deg, #1b0c0d, #140607); padding: 6px 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <span style="font-size: 1.2rem; color: #fff;">Global Ranking</span>
+      <ion-button routerLink="/home" fill="clear" class="head">HOME</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Search Bar -->
+  <ion-searchbar [(ngModel)]="search" placeholder="Buscar usuario..." show-clear-button="focus" class="searchbar"></ion-searchbar>
+
+  <!-- Filter Segment -->
+  <div class="filters">
+    <div class="chip" [class.active]="filter==='weekly'" (click)="setFilter('weekly')">Semanal</div>
+    <div class="chip" [class.active]="filter==='monthly'" (click)="setFilter('monthly')">Mensual</div>
+    <div class="chip" [class.active]="filter==='all'" (click)="setFilter('all')">Total</div>
+  </div>
+
+  <!-- Top User Card -->
+  <ion-card *ngIf="topUser" class="match-card">
+  <ion-card-header class="top-header">
+    <ion-card-subtitle>Champion</ion-card-subtitle>
+    <ion-card-title>{{ topUser.username }} {{ getMedal(0) }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content class="top-user-content">
+    <ion-avatar class="top-avatar">
+      <img [src]="topUser.avatar">
+    </ion-avatar>
+
+    <p class="points">{{ topUser.points | number }} pts</p>
+    <p class="weekly">+{{ topUser.weeklyChange }} this week</p>
+    <p *ngIf="topUser.streak" class="streak">🔥 {{ topUser.streak }} wins</p>
+  </ion-card-content>
+</ion-card>
+
+  <!-- Ranking List -->
+  <ion-list>
+    <ion-item *ngFor="let user of filteredUsers(); let i = index" lines="full" class="match-card" [ngClass]="getGlow(i)">
+      <ion-avatar slot="start">
+        <img [src]="user.avatar">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ i + 1 }} {{ getMedal(i) }} {{ user.username }}</h2>
+        <p>
+          Points: {{ user.points | number }} |
+          Accuracy: {{ user.accuracy }}% |
+          Streak: {{ user.streak || '-' }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

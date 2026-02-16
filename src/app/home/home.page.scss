@@ -67,6 +67,12 @@ ion-avatar img {
   margin-bottom: 18px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   overflow: hidden;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+  }
 }
 
 /* CARD HEADER */
@@ -103,5 +109,48 @@ ion-button {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 8px 20px rgba(229, 9, 20, 0.6);
+}
+
+.equipo {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.vs {
+  font-size: 30px;
+
+}
+
+.progress {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.match-events {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  background: rgba(34, 16, 16, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(242, 13, 13, 0.15);
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.6);
+}
+
+.nav-btn {
+  border-radius: 20px;
+  padding: 6px 14px;
+  transition: all 0.2s ease;
+  font-weight: 100;
+}
+
+.nav-btn:hover {
+  color: #fff !important;
+  transform: scale(1.05);
+}
+
+.head{
+  --background: linear-gradient(145deg, #1b0c0d, #140607);
+  --ion-color-base: #fff;
+  --ion-color-primary: #fff;
+  --ion-color-secondary: #fff;
 }

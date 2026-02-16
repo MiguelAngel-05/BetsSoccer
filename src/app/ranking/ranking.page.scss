@@ -1,0 +1,170 @@
+/* =========================
+   FONDO GENERAL
+========================= */
+ion-content {
+  --background: radial-gradient(circle at top, #1a0a0c, #0b0405);
+  color: #ffffff;
+}
+
+/* =========================
+   HEADER
+========================= */
+.head {
+  --ion-color-primary: #ffffff;
+}
+
+/* =========================
+   SEARCH BAR
+========================= */
+.searchbar {
+  margin: 0 16px 14px;
+  --background: #1b0c0d;
+  --color: #ffffff;
+  --placeholder-color: #888;
+  border-radius: 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================
+   FILTER CHIPS
+========================= */
+.filters {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px 18px;
+  overflow-x: auto;
+}
+
+.chip {
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #1b0c0d, #140607);
+  color: #bbb;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip.active {
+  background: linear-gradient(145deg, #e50914, #b10710);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.6);
+  transform: scale(1.05);
+}
+
+/* =========================
+   TOP USER CARD (CENTRADO SIN ROMPER FONDO)
+========================= */
+ion-card.match-card {
+  background: linear-gradient(180deg, #1b0c0d, #140607);
+  border-radius: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+/* Header centrado */
+ion-card.match-card ion-card-header {
+  text-align: center;
+}
+
+/* CONTENIDO: centrado PERO sin flex agresivo */
+ion-card.match-card ion-card-content {
+  text-align: center;
+  padding-top: 8px;
+}
+
+/* Avatar */
+.top-avatar {
+  margin: 12px auto;
+  width: 88px;
+  height: 88px;
+}
+
+.top-avatar img {
+  border-radius: 50%;
+  border: 3px solid #e50914;
+}
+
+/* Texto top user */
+.points {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 6px 0;
+}
+
+.weekly {
+  font-size: 13px;
+  color: #4caf50;
+}
+
+.streak {
+  font-size: 14px;
+  color: #ff9800;
+  font-weight: 600;
+}
+
+/* =========================
+   LIST RESET (ANTI GRIS DEFINITIVO)
+========================= */
+ion-list {
+  background: transparent !important;
+  --background: transparent !important;
+  padding: 0 16px 28px;
+}
+
+ion-item {
+  --background: transparent !important;
+  background: transparent !important;
+}
+
+/* =========================
+   RANKING ITEMS
+========================= */
+ion-item.match-card {
+  margin-bottom: 18px;
+  --inner-padding-start: 12px;
+  --inner-padding-end: 12px;
+  --inner-padding-top: 12px;
+  --inner-padding-bottom: 12px;
+}
+
+/* FONDO REAL DEL ITEM */
+ion-item.match-card::part(native) {
+  background: linear-gradient(180deg, #1b0c0d, #140607);
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Avatar ranking */
+ion-item.match-card ion-avatar {
+  border: 2px solid #e50914;
+  border-radius: 50%;
+}
+
+/* Texto ranking */
+ion-item.match-card ion-label h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+ion-item.match-card ion-label p {
+  font-size: 13px;
+  color: #bbbbbb;
+}
+
+/* =========================
+   TOP 3 GLOW
+========================= */
+ion-item.match-card.top-1::part(native) {
+  box-shadow: 0 0 22px #ffd700, 0 0 40px rgba(255, 215, 0, 0.35);
+}
+
+ion-item.match-card.top-2::part(native) {
+  box-shadow: 0 0 20px #c0c0c0, 0 0 36px rgba(192, 192, 192, 0.35);
+}
+
+ion-item.match-card.top-3::part(native) {
+  box-shadow: 0 0 18px #cd7f32, 0 0 32px rgba(205, 127, 50, 0.35);
+}

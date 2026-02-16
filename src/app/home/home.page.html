@@ -1,19 +1,29 @@
 <ion-content>
 
   <!-- HEADER -->
-  <div class="header">
-    <div>
-      <h2>FutApp</h2>
+  <ion-header class="head">
+  <ion-toolbar style="--background: linear-gradient(145deg, #1b0c0d, #140607);flex-direction: column; padding: 6px 12px;">
+    
+    <!-- Título + Avatar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <ion-title style="font-weight: 800; letter-spacing: 0.5px; color: #fff;">FeisFut</ion-title>
+      <ion-avatar>
+        <img src="https://i.pravatar.cc/40" />
+      </ion-avatar>
     </div>
 
-    <ion-avatar>
-      <img src="https://i.pravatar.cc/40" />
-    </ion-avatar>
-  </div>
+    <!-- Menu horizontal -->
+    <div style="display: flex; gap: 12px; margin-top: 6px; overflow-x: auto; width: 100%;">
+      <ion-button routerLink="/ranking" fill="clear" class="nav-btn">Ranking</ion-button>
+      <ion-button routerLink="/team-template" fill="clear" class="nav-btn">Plantilla</ion-button>
+      <ion-button routerLink="/league" fill="clear" class="nav-btn">Liga</ion-button>
+    </div>
+
+  </ion-toolbar>
+</ion-header>
 
   <!-- SEARCH -->
   <ion-searchbar
-    class="searchbar"
     [(ngModel)]="search"
     (ionInput)="applyFilters()"
     placeholder="Buscar equipo o partido">
@@ -21,76 +31,63 @@
 
   <!-- FILTERS -->
   <div class="filters">
-    <div class="chip"
-      [class.active]="filter === 'all'"
-      (click)="setFilter('all')">
-      Todos
-    </div>
-
-    <div class="chip"
-      [class.active]="filter === 'live'"
-      (click)="setFilter('live')">
-      🔴 En vivo
-    </div>
-
-    <div class="chip"
-      [class.active]="filter === 'pending'"
-      (click)="setFilter('pending')">
-      ⏳ Próximos
-    </div>
-
-    <div class="chip"
-      [class.active]="filter === 'finished'"
-      (click)="setFilter('finished')">
-      ✅ Finalizados
-    </div>
+    <div class="chip" [class.active]="filter==='all'" (click)="setFilter('all')">Todos</div>
+    <div class="chip" [class.active]="filter==='live'" (click)="setFilter('live')">🔴 En vivo</div>
+    <div class="chip" [class.active]="filter==='pending'" (click)="setFilter('pending')">⏳ Próximos</div>
+    <div class="chip" [class.active]="filter==='finished'" (click)="setFilter('finished')">✅ Finalizados</div>
   </div>
 
   <!-- MATCHES -->
   <div class="matches">
 
-    <ion-card *ngFor="let m of filteredMatches" class="match-card">
+    <ion-card *ngFor="let m of filteredMatches" class="match-card" 
+              (click)="m.status === 'finished' ? goToMatchDetail(m) : showToast('El partido no ha terminado aún')">
 
       <ion-card-header>
         <div class="match-top">
-          <span class="league">
-            Jornada {{ m.jornada }}
-          </span>
-
-          <span
-            class="status"
-            [class.live]="m.status === 'live'">
-            {{ m.status | uppercase }}
-          </span>
+          <span class="league">Jornada &nbsp; {{ m.jornada }}</span>
+          <span class="status" [class.live]="m.status==='live'">{{ m.status | uppercase }}</span>
         </div>
-
         <ion-card-title class="teams">
-          <span>{{ m.home }}</span>
-          <span class="vs">  VS  </span>
-          <span>{{ m.away }}</span>
+          <span class="equipo">{{ m.home }}</span> &nbsp; VS &nbsp; <span class="equipo">{{ m.away }}</span>
         </ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
-
         <!-- SCORE -->
-        <div class="score" *ngIf="m.status !== 'pending'">
-          <span>{{ m.homeScore }}</span>
-          <span class="colon">:</span>
-          <span>{{ m.awayScore }}</span>
+        <div class="score" *ngIf="m.status !== 'pending' || m.status==='live'">
+          <span>{{ m.homeScore }}</span> : <span>{{ m.awayScore }}</span>
+          <span *ngIf="m.status==='live'"> ({{ m.minute || 0 }}')</span>
         </div>
 
-        <!-- ACTION -->
-        <ion-button
-          *ngIf="m.status === 'pending'"
-          expand="block"
-          color="danger"
-          (click)="bet(m)">
-          Apostar ahora
-        </ion-button>
+        <!-- PROGRESS BAR para partido en vivo -->
+        <ion-progress-bar *ngIf="m.status==='live'" [value]="(m.minute || 0)/90" class="progress"></ion-progress-bar>
+
+        <!-- EVENTOS DEL PARTIDO -->
+        <div class="match-events" *ngIf="m.events?.length > 0">
+          <div *ngFor="let ev of m.events" class="event">
+            <span class="minute">{{ ev.minute }}'</span>
+            <span *ngIf="ev.type==='goal'">⚽ {{ ev.team }}: {{ ev.player }}</span>
+            <span *ngIf="ev.type==='yellow-card'">🟨 {{ ev.team }}: {{ ev.player }}</span>
+            <span *ngIf="ev.type==='red-card'">🟥 {{ ev.team }}: {{ ev.player }}</span>
+          </div>
+        </div>
+
+        <!-- BOTÓN APOSTAR para partidos pendientes -->
+        <div *ngIf="m.status==='pending'">
+          <ng-container *ngIf="!hasBet(m.id); else myBet">
+            <ion-button expand="block" color="danger" (click)="bet(m); $event.stopPropagation()">
+              Porra
+            </ion-button>
+          </ng-container>
+          <ng-template #myBet>
+            <div class="my-bet">
+              Tu porra: {{ hasBet(m.id)?.homeScore }} : {{ hasBet(m.id)?.awayScore }}
+            </div>
+          </ng-template>
+        </div>
 
       </ion-card-content>
-
     </ion-card>
 
   </div>

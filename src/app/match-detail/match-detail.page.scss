@@ -1,0 +1,160 @@
+/* ===== BACKGROUND ===== */
+
+ion-content {
+  --background: #221011;
+  padding: 20px;
+}
+
+/* ===== HEADER ===== */
+
+.detail-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.detail-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  color: #cbd5e1;
+}
+
+.status:contains("LIVE") {
+  background: #f20d0d;
+  color: white;
+}
+
+/* ===== SCORE ===== */
+
+.score {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 800;
+  color: white;
+  margin: 20px 0;
+  letter-spacing: 3px;
+}
+
+.score span:nth-child(2) {
+  color: #f20d0d;
+}
+
+/* ===== EVENTS PANEL ===== */
+
+.events {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(34, 16, 16, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(242, 13, 13, 0.15);
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.6);
+}
+
+.events h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #f20d0d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.event {
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  color: #cbd5e1;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.event:hover {
+  background: rgba(242, 13, 13, 0.1);
+  transform: translateX(4px);
+}
+
+/* ===== BET FORM ===== */
+
+.bet-form {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 24px;
+  background: rgba(34, 16, 16, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(242, 13, 13, 0.2);
+  box-shadow: 0 25px 60px -15px rgba(0,0,0,0.8);
+}
+
+.bet-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f20d0d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Inputs */
+
+.bet-form ion-item {
+  --background: rgba(255,255,255,0.05);
+  --color: white;
+  border-radius: 16px;
+  margin-bottom: 15px;
+}
+
+.bet-form ion-label {
+  color: #cbd5e1 !important;
+  font-weight: 600;
+}
+
+.bet-form ion-input {
+  color: white;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Button */
+
+.bet-form ion-button {
+  margin-top: 20px;
+  --border-radius: 999px;
+  --background: #f20d0d;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 25px rgba(242, 13, 13, 0.5);
+  transition: 0.2s ease;
+}
+
+.bet-form ion-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (min-width: 768px) {
+  ion-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .events,
+  .bet-form {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -18,4 +18,13 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./register/register.page').then( m => m.RegisterPage)
   },
+  {
+    path: 'match-detail/:id',
+    loadComponent: () => import('./match-detail/match-detail.page').then( m => m.MatchDetailPage)
+  },  {
+    path: 'ranking',
+    loadComponent: () => import('./ranking/ranking.page').then( m => m.RankingPage)
+  },
+
+
 ];
